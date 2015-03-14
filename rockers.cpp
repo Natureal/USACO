@@ -1,3 +1,8 @@
+/*
+ID:naturec1
+PROG: rockers
+LANG: C++
+*/
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
@@ -24,12 +29,30 @@ typedef long long ll;
 typedef pair<int,int> pii;
 const int INF = (1 << 30) - 1;
 
+int N,T,M;
+int dp[30][30][30];
+int v[30];
+
 int main(){
-	freopen("in","w",stdout);
-	printf("250\n");
-	REP(i,250){
-		REP(j,250) printf("1");
-		puts("");
+	freopen("rockers.in","r",stdin);
+	freopen("rockers.out","w",stdout);
+	scanf("%d%d%d",&N,&T,&M);
+	REP(i,N) scanf("%d",v + i);
+	REP(i,M) REP(j,N){
+		for(int s = 0; s <= T; ++s){
+			int &cur = dp[i][j][s];
+			cur = dp[i][j - 1][s]; //no j
+			if(s + v[j] <= T) cur = max(cur,dp[i][j - 1][s + v[j]] + 1);
+			if(i > 1)
+				for(int k = v[j]; k <= T; ++k)
+					cur = max(cur,dp[i - 1][j - 1][k] + 1);
+		}
 	}
+	int ans = 0;
+	for(int s = 0; s <= T; ++s)
+		ans = max(ans,dp[M][N][s]);
+	printf("%d\n",ans);
 	return 0;
 }
+		
+

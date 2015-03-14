@@ -1,3 +1,8 @@
+/*
+ID:naturec1
+PROG: fence9
+LANG: C++
+*/
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
@@ -24,12 +29,27 @@ typedef long long ll;
 typedef pair<int,int> pii;
 const int INF = (1 << 30) - 1;
 
-int main(){
-	freopen("in","w",stdout);
-	printf("250\n");
-	REP(i,250){
-		REP(j,250) printf("1");
-		puts("");
+int n,m,p;
+
+int Gcd(int a,int b){
+	while(a > 0 && b > 0){
+		if(a > b) a %= b;
+		else b %= a;
 	}
+	return a + b;
+}
+
+int main(){
+	freopen("fence9.in","r",stdin);
+	freopen("fence9.out","w",stdout);
+	//(0,0) -> (n,m) -> (p,0) -> (0,0)
+	scanf("%d%d%d",&n,&m,&p);
+	int cnt = p;
+	int g = Gcd(n,m);
+	cnt += g;
+	g = Gcd(abs(n - p),m);
+	cnt += g;
+	printf("%d\n",(p * m - cnt + 2) / 2);
 	return 0;
 }
+
