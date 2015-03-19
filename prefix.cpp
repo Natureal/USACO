@@ -31,6 +31,7 @@ const int INF = (1 << 30) - 1;
 
 vector<string> word;
 string s;
+int dp[200010];
 
 bool Check(int id,int pos){
 	for(int i = 0; i < word[id].size(); ++i)
@@ -47,14 +48,17 @@ int main(){
 		word.push_back(a);
 	while(cin >> a) s += a;
 	int ans = -1;
-	for(int i = 0; i < s.size(); ++i){
+	dp[0] = 1;
+	for(int i = 0; i < s.size(); ++i) if(dp[i]){
 		for(int j = 0; j < word.size(); ++j){
 			if(i + word[j].size() - 1 >= s.size()) continue;
-			if(Check(j,i)) ans = max(ans,(int)(i + word[j].size() - 1));
+			if(Check(j,i)) dp[(int)(i + word[j].size())] = 1;
 		}
-		if(i > ans) break;
-	} 
-	cout << ans + 1 << endl;
+	}
+	for(int i = s.size(); i >= 0; --i) if(dp[i]){
+		printf("%d\n",i);
+		break;
+	}
 	return 0;
 }
 
