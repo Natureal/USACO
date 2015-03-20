@@ -1,3 +1,8 @@
+/*
+ID:naturec1
+PROG: race3
+LANG: C++
+*/
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
@@ -24,12 +29,7 @@ typedef long long ll;
 typedef pair<int,int> pii;
 const int INF = (1 << 30) - 1;
 
+
+
 int main(){
-	freopen("in","r",stdin);
-	freopen("out","w",stdout);
-	string s;
-	while(cin >> s){
-		cout << "\"" << s << "\",";
-	}
-	return 0;
-}
+

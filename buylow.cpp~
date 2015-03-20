@@ -29,55 +29,15 @@ typedef long long ll;
 typedef pair<int,int> pii;
 const int INF = (1 << 30) - 1;
 const int MAXN = 5010;
-const int maxn = 100;
 
-#include <cstdio>
-#include <string>
-#include <cstring>
-#include <iostream>
-using namespace std;
 
-struct bign{
-	vector<int> s;
-	bign(){
-		s.clear();
-	}
-	bign operator = (int val){
-		s.clear();
-		while(val){
-			s.push_back(val % 10);
-			val /= 10;
-		}
-		return *this;
-	}
-	bign operator = (bign B){
-		s = B.s;
-		return *this;
-	}
-	bign operator + (bign B){
-		bign res;
-		int c = 0,top = max(s.size(),B.s.size()),v1,v2;
-		for(int i = 0; i < top; ++i){
-			v1 = i < s.size() ? s[i] : 0;
-			v2 = i < B.s.size() ? B.s[i] : 0;
-			res.s.push_back((v1 + v2 + c) % 10);
-			c = (v1 + v2 + c) / 10;
-		}
-		if(c) res.s.push_back(c);
-		return res;
-	}
-	void print(){
-		for(int i = s.size() - 1; i >= 0; --i)
-			printf("%d",s[i]);
-	}
-};
 
 int N;
 int v[MAXN],tv[MAXN];
 int dp[MAXN];
 int vis[MAXN];
 
-bign cnt[MAXN];
+Bign cnt[MAXN];
 
 int main(){
 	freopen("buylow.in","r",stdin);
@@ -109,7 +69,7 @@ int main(){
 	}
 	printf("%d ",ans);
 	MEM(vis,0);
-	bign anscnt;
+	Bign anscnt;
 	anscnt = 0;
 	for(int i = N; i >= 1; --i) if(!vis[v[i]] && dp[i] == ans){
 		vis[v[i]] = 1;
