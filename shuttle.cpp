@@ -34,8 +34,8 @@ int N;
 vector<int> ans1,ans2;
 
 int main(){
-	freopen("shuttle.in","r",stdin);
-	freopen("shuttle.out","w",stdout);
+//	freopen("shuttle.in","r",stdin);
+//	freopen("shuttle.out","w",stdout);
 	scanf("%d",&N);
 	if(N == 1){
 		printf("1 3 2\n");

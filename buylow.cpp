@@ -31,12 +31,6 @@ const int INF = (1 << 30) - 1;
 const int MAXN = 5010;
 const int maxn = 100;
 
-#include <cstdio>
-#include <string>
-#include <cstring>
-#include <iostream>
-using namespace std;
-
 struct bign{
 	vector<int> s;
 	bign(){
